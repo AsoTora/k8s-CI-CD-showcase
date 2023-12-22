@@ -26,7 +26,11 @@ Autoscaling is off, since this is a 1 person project no extra roles/serviceaccou
 
 used provisioned k8s, podinfo + flask-hello-world deployed
 Helm for podinfo, Kustomize for flask
+Downtime 90% handled by native k8s objects, i.e. deployment rollingUpdate strategies, adding readiness probs.
 
+to improve:
+- adding Service Mesh like Istio for observability, Netwrok Rules, VirtualService
+- monitoring
 
 ## CI/CD Pipeline
 
