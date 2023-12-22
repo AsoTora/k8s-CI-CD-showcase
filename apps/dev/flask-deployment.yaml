@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-1
+spec:
+  template:
+    spec:
+      containers:
+        - name: app-1
+          image: andreishvedau/flask-hello-world:v1.2
