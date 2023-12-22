@@ -9,5 +9,4 @@ vars.auto.tfvars
 
 # misc
 *.code-workspace
-manual.sh
 ignore/*

@@ -31,8 +31,8 @@ Downtime 90% handled by native k8s objects, i.e. deployment rollingUpdate strate
 to improve:
 
 - ingress with external domains and TLS setup (added basic examples, but didnt do any configurations)
-- adding Service Mesh like Istio for observability, Netwrok Rules, VirtualService instead or in addition to ingress
-- monitoring
+- adding Service Mesh like Istio for observability, Network Rules, VirtualService instead or in addition to ingress
+- monitoring and logging: Prometheus + Grafana, filebeat or otel-collector scraping pod logs
 - enhance the repo structure. Flask hello world app should be packaged as helm on the repo level, then on the monorepo level helm chart to be used.
 
 ## CI/CD Pipeline
