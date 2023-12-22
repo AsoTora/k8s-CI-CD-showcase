@@ -24,6 +24,10 @@ Autoscaling is off, since this is a 1 person project no extra roles/serviceaccou
     - Utilize **Helm** or **Kustomize** to manage Kubernetes configurations for the abstract or echo microservice
     - Implement a deployment strategy that ensures zero downtime during updates
 
+used provisioned k8s, podinfo + flask-hello-world deployed
+Helm for podinfo, Kustomize for flask
+
+
 ## CI/CD Pipeline
 
     - Design and implement a **CI/CD pipeline** for the microservice application
