@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-1
+  namespace: default
+data:
+  config.json: |
+    {
+      "environment" : "dev"
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-1
+  labels:
+    app: app-1
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: app-1
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: app-1
+    spec:
+      containers:
+      - name: app-1
+        image: andreishvedau/flask-hello-world:v1.1
+        volumeMounts:
+        - name: config-volume
+          mountPath: /configs/
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 20m
+          limits:
+            memory: 64Mi
+            cpu: 20m
+      volumes:
+      - name: config-volume
+        configMap:
+          name: app-1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: app-1
+  labels:
+    app: app-1
+spec:
+  type: ClusterIP
+  selector:
+    app: app-1
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 8080
