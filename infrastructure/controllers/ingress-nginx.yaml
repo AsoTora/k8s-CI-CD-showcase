@@ -35,5 +35,7 @@ spec:
     controller:
       service:
         type: "NodePort"
+      publishService:
+        enabled: true
     admissionWebhooks:
       enabled: false

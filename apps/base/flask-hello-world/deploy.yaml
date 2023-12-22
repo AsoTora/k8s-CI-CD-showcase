@@ -44,6 +44,11 @@ spec:
           limits:
             memory: 64Mi
             cpu: 20m
+        tolerations:
+        - key: "workloadKind"
+          operator: "Equal"
+          value: "apps"
+          effect: "PreferNoSchedule"
       volumes:
       - name: config-volume
         configMap:

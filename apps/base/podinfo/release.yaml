@@ -11,13 +11,30 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: podinfo
-  interval: 50m
+  interval: 10m
   install:
     remediation:
       retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  test:
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+    - paths: ["/spec/replicas"]
+      target:
+        kind: Deployment
   # Default values
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
   values:
+    tolerations:
+      - key: "workloadKind"
+        operator: "Equal"
+        value: "apps"
+        effect: "PreferNoSchedule"
+    replicaCount: 2
     redis:
       enabled: true
       repository: public.ecr.aws/docker/library/redis

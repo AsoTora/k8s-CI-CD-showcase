@@ -4,15 +4,18 @@ metadata:
   name: podinfo
   namespace: podinfo
 spec:
+  interval: 10m
+  timeout: 5m
   chart:
     spec:
-      version: ">=1.0.0-alpha"
+      chart: podinfo
+      version: '6.5.*'
   test:
     enable: false
   values:
     ingress:
       hosts:
-        - host: podinfo.staging
+        - host: podinfo.dev
           paths:
             - path: /
               pathType: ImplementationSpecific

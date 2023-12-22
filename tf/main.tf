@@ -17,8 +17,13 @@ resource "digitalocean_kubernetes_cluster" "kubernetes_cluster" {
     name       = "pool-infra"
     size       = var.k8s_nodesize
     auto_scale = false
-    node_count = 1 # # should be 3/5/7, but saving money for a showcase
+    node_count = 2 # # should be 3/5/7, but saving money for a showcase
     tags       = ["infra"]
+    taint {
+      key    = "workloadKind"
+      value  = "apps"
+      effect = "PreferNoSchedule"
+    }
   }
 
   maintenance_policy {
@@ -35,9 +40,14 @@ resource "digitalocean_kubernetes_node_pool" "app_node_pool" {
   name       = "pool-apps"
   size       = var.k8s_nodesize
   auto_scale = false
-  node_count = 1 # should be more, but saving money for a showcase
+  node_count = 2 # should be more, but saving money for a showcase
   labels = {
     service = "apps"
+  }
+  taint {
+    key    = "workloadKind"
+    value  = "infra"
+    effect = "PreferNoSchedule"
   }
   tags = ["apps"]
 }
