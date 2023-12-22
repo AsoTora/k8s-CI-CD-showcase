@@ -12,7 +12,7 @@ Not much needed
 
     - Provision **Kubernetes** cluster with separate node pools for infrastructure and applications
 
-2 simple nodepools enough for the example
+2 simple nodepools enough for the example. Used taints to separate infra + apps. To improve and harden affinity and anti-affinity setup needed.
 
     - Ensure that the infrastructure is scalable and follows best practices for security
 
@@ -29,8 +29,11 @@ Helm for podinfo, Kustomize for flask
 Downtime 90% handled by native k8s objects, i.e. deployment rollingUpdate strategies, adding readiness probs.
 
 to improve:
-- adding Service Mesh like Istio for observability, Netwrok Rules, VirtualService
+
+- ingress with external domains and TLS setup (added basic examples, but didnt do any configurations)
+- adding Service Mesh like Istio for observability, Netwrok Rules, VirtualService instead or in addition to ingress
 - monitoring
+- enhance the repo structure. Flask hello world app should be packaged as helm on the repo level, then on the monorepo level helm chart to be used.
 
 ## CI/CD Pipeline
 

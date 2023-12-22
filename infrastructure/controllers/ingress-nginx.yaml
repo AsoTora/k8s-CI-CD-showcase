@@ -33,6 +33,11 @@ spec:
       interval: 12h
   values:
     controller:
+      tolerations:
+        - key: "workloadKind"
+          operator: "Equal"
+          value: "infra"
+          effect: "PreferNoSchedule"
       service:
         type: "NodePort"
       publishService:

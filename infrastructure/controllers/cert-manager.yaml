@@ -33,3 +33,8 @@ spec:
       interval: 12h
   values:
     installCRDs: true
+    tolerations:
+    - key: "workloadKind"
+      operator: "Equal"
+      value: "infra"
+      effect: "PreferNoSchedule"
