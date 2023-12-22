@@ -10,4 +10,4 @@ patches:
       kind: HelmRelease
   - path: flask-deployment.yaml
     target:
-      kind: HelmRelease
+      kind: Deployment
